@@ -1,0 +1,581 @@
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ bin/rails:4
+  [1m[35m (155.7ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  ↳ bin/rails:4
+  [1m[35m (89.0ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ bin/rails:4
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:4
+Migrating to CreateParts (20190922001324)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ bin/rails:4
+  [1m[35m (1.4ms)[0m  [1m[35mCREATE TABLE "parts" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/migrate/20190922001324_create_parts.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20190922001324"]]
+  ↳ bin/rails:4
+  [1m[35m (160.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ bin/rails:4
+Migrating to CreateMakes (20190922001333)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ bin/rails:4
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE TABLE "makes" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "country" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/migrate/20190922001333_create_makes.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20190922001333"]]
+  ↳ bin/rails:4
+  [1m[35m (105.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ bin/rails:4
+Migrating to CreateCars (20190922001348)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ bin/rails:4
+  [1m[35m (14.6ms)[0m  [1m[35mCREATE TABLE "cars" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "model" varchar, "vin" varchar, "make_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, CONSTRAINT "fk_rails_e1be1c3de1"
+FOREIGN KEY ("make_id")
+  REFERENCES "makes" ("id")
+)[0m
+  ↳ db/migrate/20190922001348_create_cars.rb:3
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE  INDEX "index_cars_on_make_id" ON "cars" ("make_id")[0m
+  ↳ db/migrate/20190922001348_create_cars.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20190922001348"]]
+  ↳ bin/rails:4
+  [1m[35m (172.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ bin/rails:4
+Migrating to CreateCarsParts (20190922001356)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ bin/rails:4
+  [1m[35m (12.6ms)[0m  [1m[35mCREATE TABLE "cars_parts" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "car_id" integer, "part_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, CONSTRAINT "fk_rails_43254a5923"
+FOREIGN KEY ("car_id")
+  REFERENCES "cars" ("id")
+, CONSTRAINT "fk_rails_9d26199074"
+FOREIGN KEY ("part_id")
+  REFERENCES "parts" ("id")
+)[0m
+  ↳ db/migrate/20190922001356_create_cars_parts.rb:3
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_cars_parts_on_car_id" ON "cars_parts" ("car_id")[0m
+  ↳ db/migrate/20190922001356_create_cars_parts.rb:3
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_cars_parts_on_part_id" ON "cars_parts" ("part_id")[0m
+  ↳ db/migrate/20190922001356_create_cars_parts.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20190922001356"]]
+  ↳ bin/rails:4
+  [1m[35m (139.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ bin/rails:4
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ bin/rails:4
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ bin/rails:4
+  [1m[36mActiveRecord::InternalMetadata Create (1.3ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2019-09-22 00:14:06.007078"], ["updated_at", "2019-09-22 00:14:06.007078"]]
+  ↳ bin/rails:4
+  [1m[35m (132.6ms)[0m  [1m[36mcommit transaction[0m
+  ↳ bin/rails:4
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:4
+Started GET "/" for ::1 at 2019-09-21 18:34:16 -0600
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ C:/Ruby25-x64/lib/ruby/gems/2.5.0/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+Processing by Rails::WelcomeController#index as HTML
+  Rendering C:/Ruby25-x64/lib/ruby/gems/2.5.0/gems/railties-5.2.3/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered C:/Ruby25-x64/lib/ruby/gems/2.5.0/gems/railties-5.2.3/lib/rails/templates/rails/welcome/index.html.erb (3.7ms)
+Completed 200 OK in 76ms (Views: 46.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/cars" for ::1 at 2019-09-21 18:34:26 -0600
+Processing by CarsController#index as HTML
+  Rendering cars/index.html.erb within layouts/application
+  [1m[36mCar Load (0.3ms)[0m  [1m[34mSELECT "cars".* FROM "cars"[0m
+  ↳ app/views/cars/index.html.erb:16
+  Rendered cars/index.html.erb within layouts/application (14.3ms)
+Completed 200 OK in 1098ms (Views: 1046.3ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/cars/new" for ::1 at 2019-09-21 18:34:30 -0600
+Processing by CarsController#new as HTML
+  Rendering cars/new.html.erb within layouts/application
+  [1m[36mMake Load (0.3ms)[0m  [1m[34mSELECT "makes".* FROM "makes"[0m
+  ↳ app/views/cars/_form.html.erb:16
+  [1m[36mPart Load (0.3ms)[0m  [1m[34mSELECT "parts".* FROM "parts"[0m
+  ↳ app/views/cars/_form.html.erb:31
+  Rendered cars/_form.html.erb (49.4ms)
+  Rendered cars/new.html.erb within layouts/application (71.0ms)
+Completed 200 OK in 235ms (Views: 191.6ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/parts" for ::1 at 2019-09-21 18:34:38 -0600
+Processing by PartsController#index as HTML
+  Rendering parts/index.html.erb within layouts/application
+  [1m[36mPart Load (0.2ms)[0m  [1m[34mSELECT "parts".* FROM "parts"[0m
+  ↳ app/views/parts/index.html.erb:14
+  Rendered parts/index.html.erb within layouts/application (2.2ms)
+Completed 200 OK in 130ms (Views: 108.9ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/parts/new" for ::1 at 2019-09-21 18:35:12 -0600
+Processing by PartsController#new as HTML
+  Rendering parts/new.html.erb within layouts/application
+  Rendered parts/_form.html.erb (2.0ms)
+  Rendered parts/new.html.erb within layouts/application (24.3ms)
+Completed 200 OK in 156ms (Views: 132.5ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/parts" for ::1 at 2019-09-21 18:35:15 -0600
+Processing by PartsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"sQiZ6V4GY+uNZqR3hj6w6TiKOD3+MEDHTUSgpBSgxSXOZvB4jNOjwiqWpT4VNrLLPFLEimGCTam2UVIgIikUyw==", "part"=>{"name"=>"Flux Capacitor"}, "commit"=>"Create Part"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/parts_controller.rb:30
+  [1m[36mPart Create (54.2ms)[0m  [1m[32mINSERT INTO "parts" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Flux Capacitor"], ["created_at", "2019-09-22 00:35:15.373082"], ["updated_at", "2019-09-22 00:35:15.373082"]]
+  ↳ app/controllers/parts_controller.rb:30
+  [1m[35m (132.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/parts_controller.rb:30
+Redirected to http://localhost:3000/parts/1
+Completed 302 Found in 204ms (ActiveRecord: 186.6ms)
+
+
+Started GET "/parts/1" for ::1 at 2019-09-21 18:35:15 -0600
+Processing by PartsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mPart Load (0.3ms)[0m  [1m[34mSELECT  "parts".* FROM "parts" WHERE "parts"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/parts_controller.rb:67
+  Rendering parts/show.html.erb within layouts/application
+  Rendered parts/show.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 132ms (Views: 103.3ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/makes" for ::1 at 2019-09-21 18:35:20 -0600
+Processing by MakesController#index as HTML
+  Rendering makes/index.html.erb within layouts/application
+  [1m[36mMake Load (0.2ms)[0m  [1m[34mSELECT "makes".* FROM "makes"[0m
+  ↳ app/views/makes/index.html.erb:15
+  Rendered makes/index.html.erb within layouts/application (11.9ms)
+Completed 200 OK in 132ms (Views: 111.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/makes/new" for ::1 at 2019-09-21 18:35:23 -0600
+Processing by MakesController#new as HTML
+  Rendering makes/new.html.erb within layouts/application
+  Rendered makes/_form.html.erb (2.2ms)
+  Rendered makes/new.html.erb within layouts/application (32.1ms)
+Completed 200 OK in 156ms (Views: 132.7ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/makes" for ::1 at 2019-09-21 18:35:32 -0600
+Processing by MakesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"d1XJMsyGn1KmBDF3UUMEh7eml1Anaz6T/3g8EYJQ+AlWdvQbRIKk44wfctEuEgr1PItxAgqEARjanFnOYqJ61g==", "make"=>{"name"=>"DMC", "country"=>"United States"}, "commit"=>"Create Make"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/makes_controller.rb:30
+  [1m[36mMake Create (5.8ms)[0m  [1m[32mINSERT INTO "makes" ("name", "country", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "DMC"], ["country", "United States"], ["created_at", "2019-09-22 00:35:32.828260"], ["updated_at", "2019-09-22 00:35:32.828260"]]
+  ↳ app/controllers/makes_controller.rb:30
+  [1m[35m (169.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/makes_controller.rb:30
+Redirected to http://localhost:3000/makes/1
+Completed 302 Found in 188ms (ActiveRecord: 175.7ms)
+
+
+Started GET "/makes/1" for ::1 at 2019-09-21 18:35:33 -0600
+Processing by MakesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mMake Load (0.3ms)[0m  [1m[34mSELECT  "makes".* FROM "makes" WHERE "makes"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/makes_controller.rb:67
+  Rendering makes/show.html.erb within layouts/application
+  Rendered makes/show.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 143ms (Views: 120.2ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/cars" for ::1 at 2019-09-21 18:35:39 -0600
+Processing by CarsController#index as HTML
+  Rendering cars/index.html.erb within layouts/application
+  [1m[36mCar Load (0.2ms)[0m  [1m[34mSELECT "cars".* FROM "cars"[0m
+  ↳ app/views/cars/index.html.erb:16
+  Rendered cars/index.html.erb within layouts/application (2.1ms)
+Completed 200 OK in 126ms (Views: 105.9ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/cars/new" for ::1 at 2019-09-21 18:35:41 -0600
+Processing by CarsController#new as HTML
+  Rendering cars/new.html.erb within layouts/application
+  [1m[36mMake Load (0.2ms)[0m  [1m[34mSELECT "makes".* FROM "makes"[0m
+  ↳ app/views/cars/_form.html.erb:16
+  [1m[36mPart Load (0.2ms)[0m  [1m[34mSELECT "parts".* FROM "parts"[0m
+  ↳ app/views/cars/_form.html.erb:31
+  Rendered cars/_form.html.erb (120.5ms)
+  Rendered cars/new.html.erb within layouts/application (141.2ms)
+Completed 200 OK in 267ms (Views: 245.9ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/cars" for ::1 at 2019-09-21 18:35:50 -0600
+Processing by CarsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"UwvB6VrCP9Hv8nHYvGJLMJj0ziUj978dyQBH5nIC3/Bz6bKHFIgl8JBjvhURQGLXpk5nwlrfFKN+GMGooql3ZQ==", "car"=>{"make_id"=>"1", "model"=>"DeLorean", "vin"=>"10001", "part_ids"=>["", "1"]}, "commit"=>"Create Car"}
+  [1m[36mPart Load (0.3ms)[0m  [1m[34mSELECT "parts".* FROM "parts" WHERE "parts"."id" = ?[0m  [["id", 1]]
+  ↳ app/controllers/cars_controller.rb:29
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/cars_controller.rb:32
+  [1m[36mMake Load (0.2ms)[0m  [1m[34mSELECT  "makes".* FROM "makes" WHERE "makes"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/cars_controller.rb:32
+  [1m[36mCar Create (15.5ms)[0m  [1m[32mINSERT INTO "cars" ("model", "vin", "make_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["model", "DeLorean"], ["vin", "10001"], ["make_id", 1], ["created_at", "2019-09-22 00:35:50.341535"], ["updated_at", "2019-09-22 00:35:50.341535"]]
+  ↳ app/controllers/cars_controller.rb:32
+  [1m[36mCar::HABTM_Parts Create (0.3ms)[0m  [1m[32mINSERT INTO "cars_parts" ("car_id", "part_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["car_id", 1], ["part_id", 1], ["created_at", "2019-09-22 00:35:50.371394"], ["updated_at", "2019-09-22 00:35:50.371394"]]
+  ↳ app/controllers/cars_controller.rb:32
+  [1m[35m (130.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/cars_controller.rb:32
+Redirected to http://localhost:3000/cars/1
+Completed 302 Found in 189ms (ActiveRecord: 148.1ms)
+
+
+Started GET "/cars/1" for ::1 at 2019-09-21 18:35:50 -0600
+Processing by CarsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mCar Load (0.3ms)[0m  [1m[34mSELECT  "cars".* FROM "cars" WHERE "cars"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/cars_controller.rb:69
+  Rendering cars/show.html.erb within layouts/application
+  [1m[36mMake Load (0.2ms)[0m  [1m[34mSELECT  "makes".* FROM "makes" WHERE "makes"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/cars/show.html.erb:5
+  [1m[36mPart Load (0.3ms)[0m  [1m[34mSELECT "parts".* FROM "parts" INNER JOIN "cars_parts" ON "parts"."id" = "cars_parts"."part_id" WHERE "cars_parts"."car_id" = ?[0m  [["car_id", 1]]
+  ↳ app/views/cars/show.html.erb:20
+  Rendered cars/show.html.erb within layouts/application (34.1ms)
+Completed 200 OK in 170ms (Views: 146.9ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/cars" for ::1 at 2019-09-21 18:36:00 -0600
+Processing by CarsController#index as HTML
+  Rendering cars/index.html.erb within layouts/application
+  [1m[36mCar Load (0.2ms)[0m  [1m[34mSELECT "cars".* FROM "cars"[0m
+  ↳ app/views/cars/index.html.erb:16
+  [1m[36mMake Load (0.2ms)[0m  [1m[34mSELECT  "makes".* FROM "makes" WHERE "makes"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/cars/index.html.erb:18
+  Rendered cars/index.html.erb within layouts/application (14.2ms)
+Completed 200 OK in 137ms (Views: 116.1ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/cars/1" for ::1 at 2019-09-21 18:36:02 -0600
+Processing by CarsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mCar Load (0.2ms)[0m  [1m[34mSELECT  "cars".* FROM "cars" WHERE "cars"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/cars_controller.rb:69
+  Rendering cars/show.html.erb within layouts/application
+  [1m[36mMake Load (0.2ms)[0m  [1m[34mSELECT  "makes".* FROM "makes" WHERE "makes"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/cars/show.html.erb:5
+  [1m[36mPart Load (0.2ms)[0m  [1m[34mSELECT "parts".* FROM "parts" INNER JOIN "cars_parts" ON "parts"."id" = "cars_parts"."part_id" WHERE "cars_parts"."car_id" = ?[0m  [["car_id", 1]]
+  ↳ app/views/cars/show.html.erb:20
+  Rendered cars/show.html.erb within layouts/application (13.2ms)
+Completed 200 OK in 145ms (Views: 123.4ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/cars" for ::1 at 2019-09-21 18:36:03 -0600
+Processing by CarsController#index as HTML
+  Rendering cars/index.html.erb within layouts/application
+  [1m[36mCar Load (0.2ms)[0m  [1m[34mSELECT "cars".* FROM "cars"[0m
+  ↳ app/views/cars/index.html.erb:16
+  [1m[36mMake Load (0.1ms)[0m  [1m[34mSELECT  "makes".* FROM "makes" WHERE "makes"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/cars/index.html.erb:18
+  Rendered cars/index.html.erb within layouts/application (12.7ms)
+Completed 200 OK in 134ms (Views: 113.4ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/cars/1/edit" for ::1 at 2019-09-21 18:36:07 -0600
+Processing by CarsController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mCar Load (0.2ms)[0m  [1m[34mSELECT  "cars".* FROM "cars" WHERE "cars"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/cars_controller.rb:69
+  Rendering cars/edit.html.erb within layouts/application
+  [1m[36mMake Load (0.2ms)[0m  [1m[34mSELECT "makes".* FROM "makes"[0m
+  ↳ app/views/cars/_form.html.erb:16
+  [1m[36mPart Load (0.1ms)[0m  [1m[34mSELECT "parts".* FROM "parts"[0m
+  ↳ app/views/cars/_form.html.erb:31
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "parts"."id" FROM "parts" INNER JOIN "cars_parts" ON "parts"."id" = "cars_parts"."part_id" WHERE "cars_parts"."car_id" = ?[0m  [["car_id", 1]]
+  ↳ app/views/cars/_form.html.erb:31
+  Rendered cars/_form.html.erb (8.4ms)
+  Rendered cars/edit.html.erb within layouts/application (28.8ms)
+Completed 200 OK in 170ms (Views: 138.6ms | ActiveRecord: 0.8ms)
+
+
+Started PATCH "/cars/1" for ::1 at 2019-09-21 18:36:35 -0600
+Processing by CarsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"NVgEhqzzv0YSdWypAlmUEjk9Pe3cupUvTNKkuiejd9Uz9yPyaCoJzSWdoID/2T2SjPClO4Je88meZoBU8CuYAg==", "car"=>{"make_id"=>"1", "model"=>"DeLorean", "vin"=>"10002", "part_ids"=>[""]}, "commit"=>"Update Car", "id"=>"1"}
+  [1m[36mCar Load (0.2ms)[0m  [1m[34mSELECT  "cars".* FROM "cars" WHERE "cars"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/cars_controller.rb:69
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/cars_controller.rb:46
+  [1m[36mPart Load (0.3ms)[0m  [1m[34mSELECT "parts".* FROM "parts" WHERE 1=0[0m
+  ↳ app/controllers/cars_controller.rb:46
+  [1m[36mPart Load (0.1ms)[0m  [1m[34mSELECT "parts".* FROM "parts" INNER JOIN "cars_parts" ON "parts"."id" = "cars_parts"."part_id" WHERE "cars_parts"."car_id" = ?[0m  [["car_id", 1]]
+  ↳ app/controllers/cars_controller.rb:46
+  [1m[36mCar::HABTM_Parts Destroy (2.3ms)[0m  [1m[31mDELETE FROM "cars_parts" WHERE "cars_parts"."car_id" = ? AND "cars_parts"."part_id" = ?[0m  [["car_id", 1], ["part_id", 1]]
+  ↳ app/controllers/cars_controller.rb:46
+  [1m[36mMake Load (0.1ms)[0m  [1m[34mSELECT  "makes".* FROM "makes" WHERE "makes"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/cars_controller.rb:46
+  [1m[36mCar Update (0.2ms)[0m  [1m[33mUPDATE "cars" SET "vin" = ?, "updated_at" = ? WHERE "cars"."id" = ?[0m  [["vin", "10002"], ["updated_at", "2019-09-22 00:36:35.723509"], ["id", 1]]
+  ↳ app/controllers/cars_controller.rb:46
+  [1m[35m (99.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/cars_controller.rb:46
+Redirected to http://localhost:3000/cars/1
+Completed 302 Found in 128ms (ActiveRecord: 102.4ms)
+
+
+Started GET "/cars/1" for ::1 at 2019-09-21 18:36:35 -0600
+Processing by CarsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mCar Load (0.2ms)[0m  [1m[34mSELECT  "cars".* FROM "cars" WHERE "cars"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/cars_controller.rb:69
+  Rendering cars/show.html.erb within layouts/application
+  [1m[36mMake Load (0.2ms)[0m  [1m[34mSELECT  "makes".* FROM "makes" WHERE "makes"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/cars/show.html.erb:5
+  [1m[36mPart Load (0.2ms)[0m  [1m[34mSELECT "parts".* FROM "parts" INNER JOIN "cars_parts" ON "parts"."id" = "cars_parts"."part_id" WHERE "cars_parts"."car_id" = ?[0m  [["car_id", 1]]
+  ↳ app/views/cars/show.html.erb:20
+  Rendered cars/show.html.erb within layouts/application (23.5ms)
+Completed 200 OK in 151ms (Views: 128.8ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/cars" for ::1 at 2019-09-21 18:36:37 -0600
+Processing by CarsController#index as HTML
+  Rendering cars/index.html.erb within layouts/application
+  [1m[36mCar Load (0.2ms)[0m  [1m[34mSELECT "cars".* FROM "cars"[0m
+  ↳ app/views/cars/index.html.erb:16
+  [1m[36mMake Load (0.1ms)[0m  [1m[34mSELECT  "makes".* FROM "makes" WHERE "makes"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/cars/index.html.erb:18
+  Rendered cars/index.html.erb within layouts/application (15.2ms)
+Completed 200 OK in 142ms (Views: 121.0ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/cars/1" for ::1 at 2019-09-21 18:36:39 -0600
+Processing by CarsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mCar Load (0.2ms)[0m  [1m[34mSELECT  "cars".* FROM "cars" WHERE "cars"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/cars_controller.rb:69
+  Rendering cars/show.html.erb within layouts/application
+  [1m[36mMake Load (0.2ms)[0m  [1m[34mSELECT  "makes".* FROM "makes" WHERE "makes"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/cars/show.html.erb:5
+  [1m[36mPart Load (0.1ms)[0m  [1m[34mSELECT "parts".* FROM "parts" INNER JOIN "cars_parts" ON "parts"."id" = "cars_parts"."part_id" WHERE "cars_parts"."car_id" = ?[0m  [["car_id", 1]]
+  ↳ app/views/cars/show.html.erb:20
+  Rendered cars/show.html.erb within layouts/application (14.3ms)
+Completed 200 OK in 142ms (Views: 120.8ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/cars/1/edit" for ::1 at 2019-09-21 18:36:42 -0600
+Processing by CarsController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mCar Load (0.2ms)[0m  [1m[34mSELECT  "cars".* FROM "cars" WHERE "cars"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/cars_controller.rb:69
+  Rendering cars/edit.html.erb within layouts/application
+  [1m[36mMake Load (0.2ms)[0m  [1m[34mSELECT "makes".* FROM "makes"[0m
+  ↳ app/views/cars/_form.html.erb:16
+  [1m[36mPart Load (0.2ms)[0m  [1m[34mSELECT "parts".* FROM "parts"[0m
+  ↳ app/views/cars/_form.html.erb:31
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "parts"."id" FROM "parts" INNER JOIN "cars_parts" ON "parts"."id" = "cars_parts"."part_id" WHERE "cars_parts"."car_id" = ?[0m  [["car_id", 1]]
+  ↳ app/views/cars/_form.html.erb:31
+  Rendered cars/_form.html.erb (8.7ms)
+  Rendered cars/edit.html.erb within layouts/application (28.2ms)
+Completed 200 OK in 148ms (Views: 126.9ms | ActiveRecord: 0.8ms)
+
+
+Started PATCH "/cars/1" for ::1 at 2019-09-21 18:36:44 -0600
+Processing by CarsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"s2tkBZ+Hdog4IfsXAUu/yHKYZHhP4zY4SOshtwu6n9e1xENxW17AAw/JNz78yxZIx1X8rhEHUN6aXwVZ3DJwAA==", "car"=>{"make_id"=>"1", "model"=>"DeLorean", "vin"=>"10002", "part_ids"=>["", "1"]}, "commit"=>"Update Car", "id"=>"1"}
+  [1m[36mCar Load (0.2ms)[0m  [1m[34mSELECT  "cars".* FROM "cars" WHERE "cars"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/cars_controller.rb:69
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/cars_controller.rb:46
+  [1m[36mPart Load (0.2ms)[0m  [1m[34mSELECT "parts".* FROM "parts" WHERE "parts"."id" = ?[0m  [["id", 1]]
+  ↳ app/controllers/cars_controller.rb:46
+  [1m[36mPart Load (0.0ms)[0m  [1m[34mSELECT "parts".* FROM "parts" INNER JOIN "cars_parts" ON "parts"."id" = "cars_parts"."part_id" WHERE "cars_parts"."car_id" = ?[0m  [["car_id", 1]]
+  ↳ app/controllers/cars_controller.rb:46
+  [1m[36mCar::HABTM_Parts Create (1.0ms)[0m  [1m[32mINSERT INTO "cars_parts" ("car_id", "part_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["car_id", 1], ["part_id", 1], ["created_at", "2019-09-22 00:36:44.043529"], ["updated_at", "2019-09-22 00:36:44.043529"]]
+  ↳ app/controllers/cars_controller.rb:46
+  [1m[36mMake Load (0.2ms)[0m  [1m[34mSELECT  "makes".* FROM "makes" WHERE "makes"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/cars_controller.rb:46
+  [1m[35m (138.6ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/cars_controller.rb:46
+Redirected to http://localhost:3000/cars/1
+Completed 302 Found in 172ms (ActiveRecord: 140.3ms)
+
+
+Started GET "/cars/1" for ::1 at 2019-09-21 18:36:44 -0600
+Processing by CarsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mCar Load (0.3ms)[0m  [1m[34mSELECT  "cars".* FROM "cars" WHERE "cars"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/cars_controller.rb:69
+  Rendering cars/show.html.erb within layouts/application
+  [1m[36mMake Load (0.2ms)[0m  [1m[34mSELECT  "makes".* FROM "makes" WHERE "makes"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/cars/show.html.erb:5
+  [1m[36mPart Load (0.3ms)[0m  [1m[34mSELECT "parts".* FROM "parts" INNER JOIN "cars_parts" ON "parts"."id" = "cars_parts"."part_id" WHERE "cars_parts"."car_id" = ?[0m  [["car_id", 1]]
+  ↳ app/views/cars/show.html.erb:20
+  Rendered cars/show.html.erb within layouts/application (13.9ms)
+Completed 200 OK in 140ms (Views: 116.0ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/cars" for ::1 at 2019-09-21 19:22:52 -0600
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ C:/Ruby25-x64/lib/ruby/gems/2.5.0/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+Processing by CarsController#index as HTML
+  Rendering cars/index.html.erb within layouts/application
+  [1m[36mCar Load (0.3ms)[0m  [1m[34mSELECT "cars".* FROM "cars"[0m
+  ↳ app/views/cars/index.html.erb:16
+  [1m[36mMake Load (0.3ms)[0m  [1m[34mSELECT  "makes".* FROM "makes" WHERE "makes"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/cars/index.html.erb:18
+  Rendered cars/index.html.erb within layouts/application (62.2ms)
+Completed 200 OK in 434ms (Views: 379.1ms | ActiveRecord: 2.8ms)
+
+
+Started GET "/cars/new" for ::1 at 2019-09-21 19:23:10 -0600
+Processing by CarsController#new as HTML
+  Rendering cars/new.html.erb within layouts/application
+  [1m[36mMake Load (0.3ms)[0m  [1m[34mSELECT "makes".* FROM "makes"[0m
+  ↳ app/views/cars/_form.html.erb:16
+  [1m[36mPart Load (0.4ms)[0m  [1m[34mSELECT "parts".* FROM "parts"[0m
+  ↳ app/views/cars/_form.html.erb:31
+  Rendered cars/_form.html.erb (157.5ms)
+  Rendered cars/new.html.erb within layouts/application (191.0ms)
+Completed 200 OK in 328ms (Views: 299.9ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/makes" for ::1 at 2019-09-21 19:23:25 -0600
+Processing by MakesController#index as HTML
+  Rendering makes/index.html.erb within layouts/application
+  [1m[36mMake Load (0.2ms)[0m  [1m[34mSELECT "makes".* FROM "makes"[0m
+  ↳ app/views/makes/index.html.erb:15
+  Rendered makes/index.html.erb within layouts/application (11.7ms)
+Completed 200 OK in 149ms (Views: 121.9ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/makes/new" for ::1 at 2019-09-21 19:23:28 -0600
+Processing by MakesController#new as HTML
+  Rendering makes/new.html.erb within layouts/application
+  Rendered makes/_form.html.erb (2.1ms)
+  Rendered makes/new.html.erb within layouts/application (32.2ms)
+Completed 200 OK in 166ms (Views: 145.6ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/makes" for ::1 at 2019-09-21 19:23:33 -0600
+Processing by MakesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"H4MTK5xuFi6tPT02zN60hOCIhyvGWQfPu80xTOxXpnk+oC4CFGotn4cmfpCzj7r2a6Vheeu2OESeKVSTDKUkpg==", "make"=>{"name"=>"Lamborghini", "country"=>"Italy"}, "commit"=>"Create Make"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/makes_controller.rb:30
+  [1m[36mMake Create (15.9ms)[0m  [1m[32mINSERT INTO "makes" ("name", "country", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Lamborghini"], ["country", "Italy"], ["created_at", "2019-09-22 01:23:33.757125"], ["updated_at", "2019-09-22 01:23:33.757125"]]
+  ↳ app/controllers/makes_controller.rb:30
+  [1m[35m (217.6ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/makes_controller.rb:30
+Redirected to http://localhost:3000/makes/2
+Completed 302 Found in 241ms (ActiveRecord: 233.5ms)
+
+
+Started GET "/makes/2" for ::1 at 2019-09-21 19:23:34 -0600
+Processing by MakesController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mMake Load (0.3ms)[0m  [1m[34mSELECT  "makes".* FROM "makes" WHERE "makes"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/makes_controller.rb:67
+  Rendering makes/show.html.erb within layouts/application
+  Rendered makes/show.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 132ms (Views: 107.2ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/makes" for ::1 at 2019-09-21 19:23:35 -0600
+Processing by MakesController#index as HTML
+  Rendering makes/index.html.erb within layouts/application
+  [1m[36mMake Load (0.2ms)[0m  [1m[34mSELECT "makes".* FROM "makes"[0m
+  ↳ app/views/makes/index.html.erb:15
+  Rendered makes/index.html.erb within layouts/application (12.0ms)
+Completed 200 OK in 144ms (Views: 124.0ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/cars/new" for ::1 at 2019-09-21 19:23:46 -0600
+Processing by CarsController#new as HTML
+  Rendering cars/new.html.erb within layouts/application
+  [1m[36mMake Load (0.2ms)[0m  [1m[34mSELECT "makes".* FROM "makes"[0m
+  ↳ app/views/cars/_form.html.erb:16
+  [1m[36mPart Load (0.2ms)[0m  [1m[34mSELECT "parts".* FROM "parts"[0m
+  ↳ app/views/cars/_form.html.erb:31
+  Rendered cars/_form.html.erb (16.6ms)
+  Rendered cars/new.html.erb within layouts/application (37.8ms)
+Completed 200 OK in 171ms (Views: 148.3ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/cars" for ::1 at 2019-09-21 23:39:27 -0600
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ C:/Ruby25-x64/lib/ruby/gems/2.5.0/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+Processing by CarsController#index as HTML
+  Rendering cars/index.html.erb within layouts/application
+  [1m[36mCar Load (0.3ms)[0m  [1m[34mSELECT "cars".* FROM "cars"[0m
+  ↳ app/views/cars/index.html.erb:16
+  [1m[36mMake Load (0.3ms)[0m  [1m[34mSELECT  "makes".* FROM "makes" WHERE "makes"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/cars/index.html.erb:18
+  Rendered cars/index.html.erb within layouts/application (231.7ms)
+Completed 200 OK in 1738ms (Views: 1544.9ms | ActiveRecord: 2.4ms)
+
+
+Started GET "/cars/1" for ::1 at 2019-09-21 23:40:05 -0600
+Processing by CarsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mCar Load (0.4ms)[0m  [1m[34mSELECT  "cars".* FROM "cars" WHERE "cars"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/cars_controller.rb:69
+  Rendering cars/show.html.erb within layouts/application
+  [1m[36mMake Load (0.2ms)[0m  [1m[34mSELECT  "makes".* FROM "makes" WHERE "makes"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/cars/show.html.erb:5
+  [1m[36mPart Load (33.3ms)[0m  [1m[34mSELECT "parts".* FROM "parts" INNER JOIN "cars_parts" ON "parts"."id" = "cars_parts"."part_id" WHERE "cars_parts"."car_id" = ?[0m  [["car_id", 1]]
+  ↳ app/views/cars/show.html.erb:20
+  Rendered cars/show.html.erb within layouts/application (193.8ms)
+Completed 200 OK in 444ms (Views: 265.3ms | ActiveRecord: 34.9ms)
+
+
+Started GET "/cars/new" for ::1 at 2019-09-21 23:40:19 -0600
+Processing by CarsController#new as HTML
+  Rendering cars/new.html.erb within layouts/application
+  [1m[36mMake Load (0.3ms)[0m  [1m[34mSELECT "makes".* FROM "makes"[0m
+  ↳ app/views/cars/_form.html.erb:16
+  [1m[36mPart Load (0.3ms)[0m  [1m[34mSELECT "parts".* FROM "parts"[0m
+  ↳ app/views/cars/_form.html.erb:31
+  Rendered cars/_form.html.erb (365.0ms)
+  Rendered cars/new.html.erb within layouts/application (424.0ms)
+Completed 200 OK in 578ms (Views: 532.1ms | ActiveRecord: 0.6ms)
+
+
+Started POST "/cars" for ::1 at 2019-09-21 23:40:30 -0600
+Processing by CarsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"46qbCmzSIQpo+I2t7Hlqg/BbQ/j5xNNMwMOQjxgqP/KrF6r+4f7KBwv2BTZNnwv+CNZK9g/0n7XpMuhE5B1DAw==", "car"=>{"make_id"=>"1", "model"=>"DeLorean", "vin"=>"10001", "part_ids"=>[""]}, "commit"=>"Create Car"}
+  [1m[36mPart Load (0.3ms)[0m  [1m[34mSELECT "parts".* FROM "parts" WHERE 1=0[0m
+  ↳ app/controllers/cars_controller.rb:29
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/cars_controller.rb:32
+  [1m[36mMake Load (0.3ms)[0m  [1m[34mSELECT  "makes".* FROM "makes" WHERE "makes"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/cars_controller.rb:32
+  [1m[36mCar Create (61.9ms)[0m  [1m[32mINSERT INTO "cars" ("model", "vin", "make_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["model", "DeLorean"], ["vin", "10001"], ["make_id", 1], ["created_at", "2019-09-22 05:40:30.475671"], ["updated_at", "2019-09-22 05:40:30.475671"]]
+  ↳ app/controllers/cars_controller.rb:32
+  [1m[35m (100.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/cars_controller.rb:32
+Redirected to http://localhost:3000/cars/2
+Completed 302 Found in 181ms (ActiveRecord: 163.5ms)
+
+
+Started GET "/cars/2" for ::1 at 2019-09-21 23:40:30 -0600
+Processing by CarsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mCar Load (0.2ms)[0m  [1m[34mSELECT  "cars".* FROM "cars" WHERE "cars"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/cars_controller.rb:69
+  Rendering cars/show.html.erb within layouts/application
+  [1m[36mMake Load (0.2ms)[0m  [1m[34mSELECT  "makes".* FROM "makes" WHERE "makes"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/cars/show.html.erb:5
+  [1m[36mPart Load (0.2ms)[0m  [1m[34mSELECT "parts".* FROM "parts" INNER JOIN "cars_parts" ON "parts"."id" = "cars_parts"."part_id" WHERE "cars_parts"."car_id" = ?[0m  [["car_id", 2]]
+  ↳ app/views/cars/show.html.erb:20
+  Rendered cars/show.html.erb within layouts/application (5.6ms)
+Completed 200 OK in 139ms (Views: 117.4ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/cars" for ::1 at 2019-09-21 23:40:37 -0600
+Processing by CarsController#index as HTML
+  Rendering cars/index.html.erb within layouts/application
+  [1m[36mCar Load (0.2ms)[0m  [1m[34mSELECT "cars".* FROM "cars"[0m
+  ↳ app/views/cars/index.html.erb:16
+  [1m[36mMake Load (0.1ms)[0m  [1m[34mSELECT  "makes".* FROM "makes" WHERE "makes"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/cars/index.html.erb:18
+  [1m[36mCACHE Make Load (0.0ms)[0m  [1m[34mSELECT  "makes".* FROM "makes" WHERE "makes"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/cars/index.html.erb:18
+  Rendered cars/index.html.erb within layouts/application (7.1ms)
+Completed 200 OK in 135ms (Views: 113.3ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/cars/new" for ::1 at 2019-09-21 23:40:47 -0600
+Processing by CarsController#new as HTML
+  Rendering cars/new.html.erb within layouts/application
+  [1m[36mMake Load (0.2ms)[0m  [1m[34mSELECT "makes".* FROM "makes"[0m
+  ↳ app/views/cars/_form.html.erb:16
+  [1m[36mPart Load (0.2ms)[0m  [1m[34mSELECT "parts".* FROM "parts"[0m
+  ↳ app/views/cars/_form.html.erb:31
+  Rendered cars/_form.html.erb (7.5ms)
+  Rendered cars/new.html.erb within layouts/application (27.5ms)
+Completed 200 OK in 152ms (Views: 131.5ms | ActiveRecord: 0.4ms)
+
+

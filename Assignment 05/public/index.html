@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <!-- Include Bootstrap -->
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+            integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script><!-- Include axios -->
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script><!-- Include Vue -->
+        <title>CS-3710-05 SPA</title><!-- Set title-->
+    </head>
+    <body>
+        <div class="container"><!-- Boostrap container -->
+            <div id="Itemlist"><!-- DOM Element for Vue -->
+                <div class="row m-5"><!-- Bootstrap row margin 5 -->
+                    <div class="btn-group" role="group"  aria-label="Basic example"><!-- Group buttons with Bootstrap -->
+                        <!-- Vue.js buttons -->
+                        <button type="button" class="btn btn-secondary" v-on:click="cars_selected=true, makes_selected=false, parts_selected=false">cars</button>
+                        <button type="button" class="btn btn-secondary" v-on:click="cars_selected=false, makes_selected=true, parts_selected=false">makes</button>
+                        <button type="button" class="btn btn-secondary" v-on:click="cars_selected=false, makes_selected=false, parts_selected=true">parts</button>
+                    </div>
+                </div>
+                <div class="row m-5"><!-- Bootstrap row margin 5 -->
+                    <table class="table table-striped table-dark"><!-- Bootstrap table -->
+                        <!-- Table header stuff if cars -->
+                        <thead v-if="cars_selected">
+                            <tr>
+                                <td>ID</td>
+                                <td>Make</td>
+                                <td>Model</td>
+                                <td>VIN</td>
+                                <td>Parts</td>
+                            </tr>
+                        </thead>
+                        <!-- Table header stuff if makes -->
+                        <thead v-if="makes_selected">
+                            <tr>
+                                <td>ID</td>
+                                <td>Name</td>
+                                <td>Country</td>
+                            </tr>
+                        </thead>
+                        <!-- Table header stuff if parts -->
+                        <thead v-if="parts_selected">
+                            <tr>
+                                <td>ID</td>
+                                <td>Name</td>
+                            </tr>
+                        </thead>
+                        <!-- Table body stuff if cars -->
+                        <tbody v-if="cars_selected">
+                            <tr v-for="car in cars"><!-- Loop through cars -->
+                                <td>{{car.id}}</td>
+                                <td>
+                                    <!-- Find the matching make -->
+                                    <span v-for="make in makes">
+                                        <!-- Display make name -->
+                                        <span v-if="make.id === car.make_id">{{make.name}}</span>
+                                    </span>
+                                </td>
+                                <td>{{car.model}}</td>
+                                <td>{{car.vin}}</td>
+                                <td>
+                                    <!-- Find carsparts for current car -->
+                                    <span v-for="carsparts in cars_parts">
+                                        <span v-if="carsparts.car_id === car.id">
+                                            <!-- Find matching part -->
+                                            <span v-for="part in parts">
+                                                <span v-if="carsparts.part_id === part.id">
+                                                    <!-- Display part name -->
+                                                    <span class="badge badge-secondary badge-pill m-1">{{part.name}}</span>
+                                                </span>
+                                            </span>                                            
+                                        </span>
+                                    </span> 
+                                </td>
+                            </tr>
+                        </tbody>
+                        <!-- Table body stuff if makes -->
+                        <tbody v-if="makes_selected">
+                            <tr v-for="make in makes"><!-- Loop through makes -->
+                                <td>{{make.id}}</td>
+                                <td>{{make.name}}</td>
+                                <td>{{make.country}}</td>
+                            </tr>
+                        </tbody>
+                        <!-- Table body stuff if parts -->
+                        <tbody v-if="parts_selected">
+                            <tr v-for="part in parts"><!-- Loop through parts -->
+                                <td>{{part.id}}</td>
+                                <td>{{part.name}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- JavaScript for Vue using axios -->
+        <script type="text/javascript">
+            // Vue instance
+            var ItemsVue = new Vue({
+                // Id of the DOM element to manipulate
+                el: '#Itemlist',
+                // Arrays and booleans for storing json and determining what to display
+                data: {
+                    cars: [],
+                    cars_selected: false,
+                    makes: [],
+                    makes_selected: false,
+                    parts: [],
+                    parts_selected: false,
+                    cars_parts: []
+                },
+                // Vue hook (function to be called after instance is mounted)
+                mounted: function () {
+                    // Use axios to get cars json
+                    axios.get('http://localhost:3000/cars.json')
+                        .then(response => { this.cars = response.data })
+                        .catch(error => { console.log(error); });
+                    // Use axios to get makes json
+                    axios.get('http://localhost:3000/makes.json')
+                        .then(response => { this.makes = response.data })
+                        .catch(error => { console.log(error); });
+                    // Use axios to get parts json
+                    axios.get('http://localhost:3000/parts.json')
+                        .then(response => { this.parts = response.data })
+                        .catch(error => { console.log(error); });
+                    // Use axios to get carsparts json
+                    axios.get('http://localhost:3000/cars_parts.json')
+                        .then(response => { this.cars_parts = response.data })
+                        .catch(error => { console.log(error); });
+                }
+            });
+        </script>
+        <!-- Additional Bootstrap JS stuff-->
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
+    </body>
+</html>

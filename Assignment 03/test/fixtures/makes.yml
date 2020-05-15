@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+# created make one
+one:
+  name: DMC
+  country: United States
+
+#created make two
+two:
+  name: Porsche
+  country: Germany

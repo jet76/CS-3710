@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Update title for current assignment -->
+    <title>CS-3710-03</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+  <!-- Navigation -->
+  <table>
+    <tr>
+      <td>Navigation</td>
+      <td><%= link_to 'Home', home_index_path %></td>
+      <td><%= link_to 'Cars', cars_path %></td>
+      <td><%= link_to 'Makes', makes_path %></td>
+      <td><%= link_to 'Parts', parts_path %></td>
+      <td><%= link_to_if(user_signed_in?, 'Log out', destroy_user_session_path, method: :delete){link_to 'Log in', new_user_session_path} %></td>
+    </tr>
+  </table>
+    <%= yield %>
+  </body>
+</html>
