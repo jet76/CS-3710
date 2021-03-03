@@ -101,8 +101,8 @@ GEM
     nokogiri (1.11.1-x64-mingw32)
       racc (~> 1.4)
     public_suffix (4.0.1)
-    puma (3.12.1)
     racc (1.5.2)
+    puma (3.12.6)
     rack (2.2.3)
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
@@ -196,7 +196,7 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   duktape
   jbuilder (~> 2.5)
-  puma (~> 3.11)
+  puma (~> 3.12)
   rails (~> 5.2.3)
   sass-rails (~> 5.0)
   selenium-webdriver
