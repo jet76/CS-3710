@@ -1,24 +1,20 @@
 # README
+*Assignment 5*:
+    -use assignment 2's JSON API to create a Single Page Application
+    -display everything your app did via HTML in your display
+    -make sure to make all requests via Ajax so that the URL does not change even though the information displayed does
+    -you are not required to upload information, only display it; C/U/D operations via Ajax are extra credit
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+    -recommended to put .html file in public directory of your application so you don't run into any CORS issues
+    -remember to bring up your browser's web console to help you debug your SPA. you can also use the console.log method to print values to the web console
 
-Things you may want to cover:
+*IMPORTANT*:
+In order to get the assignment working, I used a firefox extension to bypass the "Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remote resource at ... (Reason: CORS header 'Access-Control-Allow-Origin' missing)."
 
-* Ruby version
+Firefox extension found here: https://addons.mozilla.org/en-US/firefox/addon/access-control-allow-origin/
 
-* System dependencies
+Viewed the spa html file through localhost. In command line, navigate to public directory and run the command $php -S localhost:8080, and then in the browser go to http://localhost:8080/jspa.html 
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+*Structure*:
+Make -> Cars -> Factory -> Parts
+(one)     (many)    (model)     (many)
