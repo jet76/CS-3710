@@ -1,2 +1,1 @@
-*.rb linguist-detectable=true
-*.java linguist-detectable=false
+*.rb linguist-language=Ruby
