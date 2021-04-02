@@ -1,24 +1,2 @@
-# README
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+# Assignment three
+Create a navigation bar using URL helpers. It can be as simple as a table at the top. If you want to do something more sophisticated, there are a few pointers at https://www.ruby-toolbox.com/categories/rails_menu_builders.html Also have authentication via the devise gem.
