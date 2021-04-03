@@ -5,5 +5,5 @@ Description: Modern web application frameworks encompass many different technolo
 - [Assingment 01](/Assignment%2001) - Scaffolding, relationships, and models
 - [Assingment 02](/Assignment%2002) - Validation, search, and unit tests
 - [Assingment 03](/Assignment%2003) - Navigation and authentication
-- [Assingment 04](/Assignment%2004) - Pen testing with OWASP
+- [Assingment 04](/Assignment%2004) - Pen testing with Web Goat, Burp Suite, and Zap SQL Inject
 - [Assingment 05](/Assignment%2005) - Single Page Application (SPA)
